@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class background : MonoBehaviour
+public class BackgroundMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _bounce;

@@ -19,7 +19,8 @@ public class PlayerMover : MonoBehaviour
     private void Update()
     {
         if (transform.position != _targetPosition)
-            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards
+                (transform.position, _targetPosition,  _speed * Time.deltaTime);
     }
 
     public void TryMoveUp()
