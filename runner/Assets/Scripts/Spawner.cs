@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Spawner : ObjectPool
@@ -6,25 +7,21 @@ public class Spawner : ObjectPool
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private float _spawnRate;
 
-    private float _elapsedTime = 0f;
-
-    void Start()
+    private void Start()
     {
         Initialize(_prefabs);
+        StartCoroutine(Spawn());
     }
 
-    void Update()
+    private IEnumerator Spawn()
     {
-        _elapsedTime += Time.deltaTime;
-
-        if (_elapsedTime >= _spawnRate)
+        while (true)
         {
+            yield return new WaitForSeconds(_spawnRate);
+
             if (TryGetEnemy(out GameObject prefab))
             {
-                _elapsedTime = 0;
-
                 int randomPointNumber = Random.Range(0, _spawnPoints.Length);
-
                 SetObject(prefab, _spawnPoints[randomPointNumber].position);
             }
         }

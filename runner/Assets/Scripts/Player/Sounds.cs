@@ -11,17 +11,17 @@ public class Sounds : MonoBehaviour
 
     private AudioSource _source;
 
-    void Start()
+    private void Start()
     {
         _source = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.GetComponent<Enemy>())
+        if(collider.TryGetComponent(out Enemy enemy))
             _source.PlayOneShot(_takeDamage);
 
-        if (collider.GetComponent<Food>())
+        if (collider.TryGetComponent(out Food food))
             _source.PlayOneShot(_eatFood);
     }
 }

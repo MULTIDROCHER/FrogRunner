@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CanvasGroup))]
 public class GameOverScreen : MonoBehaviour
 {
-    [SerializeField] private Button _restartBtn;
-    [SerializeField] private Button _exitBtn;
+    [SerializeField] private Button _restart;
+    [SerializeField] private Button _exit;
     [SerializeField] private Player _player;
 
     private CanvasGroup _gameOverScreen;
@@ -24,8 +24,8 @@ public class GameOverScreen : MonoBehaviour
     private void Start()
     {
         _gameOverScreen = GetComponent<CanvasGroup>();
-        _restartBtn.onClick.AddListener(Restart);
-        _exitBtn.onClick.AddListener(Exit);
+        _restart.onClick.AddListener(Restart);
+        _exit.onClick.AddListener(Exit);
         _gameOverScreen.alpha = 0;
     }
 
