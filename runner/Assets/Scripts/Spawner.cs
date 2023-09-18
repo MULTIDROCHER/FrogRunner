@@ -7,17 +7,20 @@ public class Spawner : ObjectPool
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private float _spawnRate;
 
+    private WaitForSeconds _waitForSeconds;
+
     private void Start()
     {
         Initialize(_prefabs);
         StartCoroutine(Spawn());
+        _waitForSeconds = new WaitForSeconds(_spawnRate);
     }
 
     private IEnumerator Spawn()
     {
         while (true)
         {
-            yield return new WaitForSeconds(_spawnRate);
+            yield return _waitForSeconds;
 
             if (TryGetEnemy(out GameObject prefab))
             {

@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
 
     public void RecoverHealth(int heal)
     {
-        if (_health < _maxHealth)
-            _health += heal;
+        _health += heal;
+        _health = Mathf.Clamp(_health, 0, _maxHealth);
 
         HealthChanged?.Invoke(_health);
     }
